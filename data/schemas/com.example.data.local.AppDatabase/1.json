@@ -1,0 +1,323 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "09193a497ff93afde0ecaea7b235ba5f",
+    "entities": [
+      {
+        "tableName": "tabla",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`nombreTabla` TEXT NOT NULL, `pk` TEXT, `queryCreacion` TEXT, `batchSize` INTEGER, `filtro` TEXT, `error` TEXT, `numeroCampos` INTEGER, `metodoApp` TEXT, `fechaActualizacionSincro` TEXT, PRIMARY KEY(`nombreTabla`))",
+        "fields": [
+          {
+            "fieldPath": "nombreTabla",
+            "columnName": "nombreTabla",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pk",
+            "columnName": "pk",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "queryCreacion",
+            "columnName": "queryCreacion",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "batchSize",
+            "columnName": "batchSize",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "filtro",
+            "columnName": "filtro",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "error",
+            "columnName": "error",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "numeroCampos",
+            "columnName": "numeroCampos",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "metodoApp",
+            "columnName": "metodoApp",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fechaActualizacionSincro",
+            "columnName": "fechaActualizacionSincro",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "nombreTabla"
+          ]
+        }
+      },
+      {
+        "tableName": "localidad",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idLocalidad` TEXT NOT NULL, `idTipoLocalidad` TEXT, `idAncestroPGrado` TEXT, `idAncestroSGrado` TEXT, `nombreAncestroSGrado` TEXT, `idAncestroTGrado` TEXT, `nombreAncestroTGrado` TEXT, `nombre` TEXT, `nombreCorto` TEXT, `nombreAncestroPGrado` TEXT, `nombreCompleto` TEXT, `nombreTipoLocalidad` TEXT, `asignadoEnZona` INTEGER, `asignadoEnZonaOrig` INTEGER, `dispoLocalidad` INTEGER, `nombreZona` TEXT, `codigoPostal` TEXT, `indicativo` TEXT, `idCentroServicio` INTEGER, `estadoRegistro` INTEGER, `tiposLocalidades` TEXT, `permiteRecogida` INTEGER, `horaMaxRecogida` INTEGER, `seGeorreferencia` INTEGER, `valorRecogida` REAL, `permitePreEnviosPunto` INTEGER, `etiquetaEntrega` INTEGER, `horaMinRecogida` INTEGER, `abreviacionCiudad` TEXT, PRIMARY KEY(`idLocalidad`))",
+        "fields": [
+          {
+            "fieldPath": "idLocalidad",
+            "columnName": "idLocalidad",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idTipoLocalidad",
+            "columnName": "idTipoLocalidad",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "idAncestroPGrado",
+            "columnName": "idAncestroPGrado",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "idAncestroSGrado",
+            "columnName": "idAncestroSGrado",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombreAncestroSGrado",
+            "columnName": "nombreAncestroSGrado",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "idAncestroTGrado",
+            "columnName": "idAncestroTGrado",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombreAncestroTGrado",
+            "columnName": "nombreAncestroTGrado",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombreCorto",
+            "columnName": "nombreCorto",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombreAncestroPGrado",
+            "columnName": "nombreAncestroPGrado",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombreCompleto",
+            "columnName": "nombreCompleto",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombreTipoLocalidad",
+            "columnName": "nombreTipoLocalidad",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "asignadoEnZona",
+            "columnName": "asignadoEnZona",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "asignadoEnZonaOrig",
+            "columnName": "asignadoEnZonaOrig",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "dispoLocalidad",
+            "columnName": "dispoLocalidad",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "nombreZona",
+            "columnName": "nombreZona",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "codigoPostal",
+            "columnName": "codigoPostal",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "indicativo",
+            "columnName": "indicativo",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "idCentroServicio",
+            "columnName": "idCentroServicio",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "estadoRegistro",
+            "columnName": "estadoRegistro",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "tiposLocalidades",
+            "columnName": "tiposLocalidades",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "permiteRecogida",
+            "columnName": "permiteRecogida",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "horaMaxRecogida",
+            "columnName": "horaMaxRecogida",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "seGeorreferencia",
+            "columnName": "seGeorreferencia",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "valorRecogida",
+            "columnName": "valorRecogida",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "permitePreEnviosPunto",
+            "columnName": "permitePreEnviosPunto",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "etiquetaEntrega",
+            "columnName": "etiquetaEntrega",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "horaMinRecogida",
+            "columnName": "horaMinRecogida",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "abreviacionCiudad",
+            "columnName": "abreviacionCiudad",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "idLocalidad"
+          ]
+        }
+      },
+      {
+        "tableName": "auth",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`usuario` TEXT NOT NULL, `identificacion` TEXT, `nombre` TEXT, `apellido1` TEXT, `apellido2` TEXT, `cargo` TEXT, `aplicaciones` TEXT, `ubicaciones` TEXT, `mensajeResultado` INTEGER, `idLocalidad` TEXT, `nombreLocalidad` TEXT, `nomRol` TEXT, `idRol` TEXT, `tokenJWT` TEXT, `modulosApp` TEXT, `cachedAt` INTEGER NOT NULL, PRIMARY KEY(`usuario`))",
+        "fields": [
+          {
+            "fieldPath": "usuario",
+            "columnName": "usuario",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "identificacion",
+            "columnName": "identificacion",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "apellido1",
+            "columnName": "apellido1",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "apellido2",
+            "columnName": "apellido2",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "cargo",
+            "columnName": "cargo",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "aplicaciones",
+            "columnName": "aplicaciones",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "ubicaciones",
+            "columnName": "ubicaciones",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "mensajeResultado",
+            "columnName": "mensajeResultado",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "idLocalidad",
+            "columnName": "idLocalidad",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombreLocalidad",
+            "columnName": "nombreLocalidad",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nomRol",
+            "columnName": "nomRol",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "idRol",
+            "columnName": "idRol",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "tokenJWT",
+            "columnName": "tokenJWT",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "modulosApp",
+            "columnName": "modulosApp",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "cachedAt",
+            "columnName": "cachedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "usuario"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '09193a497ff93afde0ecaea7b235ba5f')"
+    ]
+  }
+}

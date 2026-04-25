@@ -1,0 +1,55 @@
+<resources>
+    <!-- Generic errors -->
+    <string name="error_disk_full">Your device storage is full. Please free up some space and try again.</string>
+    <string name="error_data_corrupted">A database error occurred. Some data might be damaged or unavailable.</string>
+    <string name="error_request_timeout">The request took too long to respond. Please check your connection and try again.</string>
+    <string name="error_unauthorized">You\'re not authorized. Verify your credentials.</string>
+    <string name="error_forbidden">Access denied. You don\'t have permission to perform this action.</string>
+    <string name="error_not_found">We couldn\'t find the requested information.</string>
+    <string name="error_bad_request">Something went wrong with your request. Please try again.</string>
+    <string name="error_too_many_requests">You\'re making too many requests. Please wait a minute before retrying.</string>
+    <string name="error_no_internet">No internet connection detected. Please connect and try again.</string>
+    <string name="error_server_error">The server is temporarily unavailable. Please try again in a few minutes.</string>
+    <string name="error_serialization">We had trouble processing the server\'s response. Please try again later.</string>
+    <string name="error_unknown">Something went wrong unexpectedly. Please try again.</string>
+
+    <!-- Domain errors -->
+    <string name="error_username_empty">Please enter your username</string>
+    <string name="error_password_empty">Please enter your password</string>
+    <string name="error_invalid_app_version">Version must be a positive number</string>
+    <string name="error_app_version_outdated">Your app version is outdated.</string>
+
+    <!-- Login -->
+    <string name="login_title">Sign in</string>
+    <string name="login_usuario_label">Username</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_button">Sign in</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_info_title">App Info</string>
+    <string name="settings_app_version">App version: %d</string>
+    <string name="settings_edit_version_title">Edit App Version</string>
+    <string name="settings_edit_version_placeholder">Version number</string>
+    <string name="settings_edit_version_confirm">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Common -->
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
+    <string name="hi">Hi</string>
+    <string name="welcome">Welcome</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="locations">Localidades</string>
+    <string name="tables">Tablas</string>
+    <string name="table_pk">PK: %s</string>
+    <string name="table_batch_size">Batch: %d</string>
+    <string name="edit">Edit</string>
+    <string name="logo">Logo</string>
+    <string name="app_version_updated">Your app version is updated</string>
+    <string name="refresh">Refresh</string>
+    <string name="logout">Log out</string>
+    <string name="retry">Retry</string>
+    <string name="load_more">Load more</string>
+
+</resources>
