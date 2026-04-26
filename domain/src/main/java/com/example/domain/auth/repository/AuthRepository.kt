@@ -12,7 +12,7 @@ interface AuthRepository {
 	suspend fun login(
 		userForm: UserForm,
 		headers: AuthHeaders,
-	): Result<User, DataError.Remote>
+	): Result<User, DataError>
 
 	fun getAuthUser(): Flow<User?>
 

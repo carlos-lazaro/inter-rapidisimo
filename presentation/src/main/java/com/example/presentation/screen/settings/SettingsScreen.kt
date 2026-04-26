@@ -30,11 +30,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.presentation.R
-import com.example.presentation.component.SimpleTopAppBar
 import com.example.presentation.component.button.AppButton
 import com.example.presentation.component.button.AppButtonStyle
 import com.example.presentation.component.card.SettingsSectionCard
 import com.example.presentation.component.textfields.AppTextField
+import com.example.presentation.component.topBar.SimpleTopAppBar
 import com.example.presentation.theme.AppTheme
 import com.example.presentation.theme.preview.ThemePreview
 import com.example.presentation.util.ObserveAsEvents

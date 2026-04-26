@@ -1,4 +1,4 @@
-package com.example.presentation.component
+package com.example.presentation.component.topBar
 
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.material.icons.Icons

@@ -19,6 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+	//    TODO: put in a better place
 	@Provides
 	@Singleton
 	@Named("baseUrl")

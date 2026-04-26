@@ -2,8 +2,7 @@ package com.example.data.tabla.repository
 
 import com.example.core.util.DataError
 import com.example.core.util.EmptyResult
-import com.example.core.util.asEmptyResult
-import com.example.core.util.onSuccess
+import com.example.core.util.Result
 import com.example.data.tabla.local.TablaLocalDataSource
 import com.example.data.tabla.mapper.toDomain
 import com.example.data.tabla.mapper.toEntity
@@ -21,10 +20,8 @@ class TableRepositoryImpl
 		override fun getTables() = localDataSource.getAllTablas().map { it.toDomain() }
 
 		override suspend fun syncTables(usuario: String): EmptyResult<DataError> =
-			remoteDataSource
-				.obtenerEsquema(usuario = usuario)
-				.onSuccess { dtos ->
-					val tablas = dtos.mapNotNull { it.toEntity() }
-					localDataSource.replaceTablas(tablas)
-				}.asEmptyResult()
+			when (val result = remoteDataSource.obtenerEsquema(usuario = usuario)) {
+				is Result.Success -> localDataSource.replaceTablas(result.data.mapNotNull { it.toEntity() })
+				is Result.Failure -> result
+			}
 	}

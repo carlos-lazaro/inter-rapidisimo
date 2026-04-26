@@ -83,11 +83,9 @@ class LoginViewModel
 
 				loginUseCase(
 					_state.value.username.text
-						.toString()
-						.trim(),
+						.toString(),
 					_state.value.password.text
-						.toString()
-						.trim(),
+						.toString(),
 				).onSuccess { _events.send(LoginEvent.NavigateToHome) }
 					.onFailure { error ->
 						when (error) {

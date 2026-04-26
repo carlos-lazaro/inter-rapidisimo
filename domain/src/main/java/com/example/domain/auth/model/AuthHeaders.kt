@@ -1,5 +1,6 @@
 package com.example.domain.auth.model
 
+// TODO: hardcoded for now
 data class AuthHeaders(
 	val usuario: String = "pam.meredy21",
 	val idUsuario: String = "pam.meredy21",

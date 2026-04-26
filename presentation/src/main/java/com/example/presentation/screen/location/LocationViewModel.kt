@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.util.onFailure
 import com.example.domain.location.usecase.GetLocationsUseCase
 import com.example.domain.location.usecase.SyncLocationsUseCase
-import com.example.presentation.screen.table.TableEvent
 import com.example.presentation.util.asUiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

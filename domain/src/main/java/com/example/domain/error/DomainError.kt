@@ -25,3 +25,9 @@ sealed interface DomainError : Error {
 }
 
 fun DomainError.asResultFailure() = Result.Failure(this)
+
+fun DataError.toDomainError(): DomainError =
+	when (this) {
+		is DataError.Remote -> DomainError.RemoteError(this)
+		is DataError.Local -> DomainError.LocalError(this)
+	}
