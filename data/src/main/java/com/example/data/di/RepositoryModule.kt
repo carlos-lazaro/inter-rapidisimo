@@ -1,5 +1,6 @@
 package com.example.data.di
 
+import com.example.data.auth.encoder.Base64CredentialEncoder
 import com.example.data.auth.repository.AuthRepositoryImpl
 import com.example.data.localidad.repository.LocationRepositoryImpl
 import com.example.data.security.SecurityRepositoryImpl
@@ -7,6 +8,7 @@ import com.example.data.settings.SettingsRepositoryImpl
 import com.example.data.tabla.repository.TableRepositoryImpl
 import com.example.domain.auth.repository.AuthRepository
 import com.example.domain.location.repository.LocationRepository
+import com.example.domain.security.encoder.CredentialEncoder
 import com.example.domain.security.repository.SecurityRepository
 import com.example.domain.setting.repository.SettingsRepository
 import com.example.domain.table.repository.TableRepository
@@ -38,4 +40,8 @@ abstract class RepositoryModule {
 	@Binds
 	@Singleton
 	abstract fun bindTableRepository(impl: TableRepositoryImpl): TableRepository
+
+	@Binds
+	@Singleton
+	abstract fun bindCredentialEncoder(impl: Base64CredentialEncoder): CredentialEncoder
 }
