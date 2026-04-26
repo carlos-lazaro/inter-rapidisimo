@@ -81,15 +81,13 @@ class HomeViewModel
 			if (_state.value.isLoggingOut) return
 			viewModelScope.launch {
 				_state.update { it.copy(isLoggingOut = true) }
-				when (val result = logoutUseCase()) {
-					is Result.Success -> {
-						clearLocalCacheUseCase()
+				try {
+					when (val result = logoutUseCase()) {
+						is Result.Success -> clearLocalCacheUseCase()
+						is Result.Failure -> _events.send(HomeEvent.ShowSnackbar(result.error.asUiText()))
 					}
-
-					is Result.Failure -> {
-						_state.update { it.copy(isLoggingOut = false) }
-						_events.send(HomeEvent.ShowSnackbar(result.error.asUiText()))
-					}
+				} finally {
+					_state.update { it.copy(isLoggingOut = false) }
 				}
 			}
 		}

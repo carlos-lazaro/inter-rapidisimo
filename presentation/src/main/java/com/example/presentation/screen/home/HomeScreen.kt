@@ -57,7 +57,10 @@ fun HomeScreen(
 
 	ObserveAsEvents(viewModel.events) { event ->
 		when (event) {
-			is HomeEvent.ShowSnackbar -> snackbarHostState.showSnackbar(event.message.asString(context))
+			is HomeEvent.ShowSnackbar -> {
+				snackbarHostState.currentSnackbarData?.dismiss()
+				snackbarHostState.showSnackbar(event.message.asString(context))
+			}
 		}
 	}
 

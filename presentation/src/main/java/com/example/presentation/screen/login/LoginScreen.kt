@@ -44,8 +44,14 @@ fun LoginScreen(
 
 	ObserveAsEvents(viewModel.events) { event ->
 		when (event) {
-			is LoginEvent.ShowSnackbar -> snackbarHostState.showSnackbar(event.message.asString(context))
-			LoginEvent.NavigateToHome -> onLoginSuccess()
+			is LoginEvent.ShowSnackbar -> {
+				snackbarHostState.currentSnackbarData?.dismiss()
+				snackbarHostState.showSnackbar(event.message.asString(context))
+			}
+
+			LoginEvent.LoginSuccess -> {
+				onLoginSuccess()
+			}
 		}
 	}
 

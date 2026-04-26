@@ -51,7 +51,10 @@ fun SettingsScreen(
 
 	ObserveAsEvents(viewModel.events) { event ->
 		when (event) {
-			is SettingsEvent.ShowSnackbar -> snackbarHostState.showSnackbar(event.message.asString(context))
+			is SettingsEvent.ShowSnackbar -> {
+				snackbarHostState.currentSnackbarData?.dismiss()
+				snackbarHostState.showSnackbar(event.message.asString(context))
+			}
 		}
 	}
 

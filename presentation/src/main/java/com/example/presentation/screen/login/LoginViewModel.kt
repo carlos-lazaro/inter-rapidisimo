@@ -79,16 +79,22 @@ class LoginViewModel
 
 		private fun login() {
 			if (_state.value.isLoading) return
+			val username =
+				_state.value.username.text
+					.toString()
+			val password =
+				_state.value.password.text
+					.toString()
+
 			viewModelScope.launch {
 				_state.update { it.copy(isLoading = true) }
-
-				loginUseCase(
-					_state.value.username.text
-						.toString(),
-					_state.value.password.text
-						.toString(),
-				).onSuccess { _events.send(LoginEvent.NavigateToHome) }
-					.onFailure { error ->
+				try {
+					loginUseCase(
+						usuario = username,
+						password = password,
+					).onSuccess {
+						_events.send(LoginEvent.LoginSuccess)
+					}.onFailure { error ->
 						when (error) {
 							DomainError.UsernameEmpty -> {
 								_state.update { it.copy(usernameError = error.asUiText(), passwordError = null) }
@@ -103,8 +109,9 @@ class LoginViewModel
 							}
 						}
 					}
-
-				_state.update { it.copy(isLoading = false) }
+				} finally {
+					_state.update { it.copy(isLoading = false) }
+				}
 			}
 		}
 	}

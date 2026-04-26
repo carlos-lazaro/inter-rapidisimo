@@ -173,3 +173,11 @@ private fun PreviewEmpty() {
 		)
 	}
 }
+
+@ThemePreview
+@Composable
+private fun PreviewTableCard() {
+	AppTheme {
+		TableCard(table = Table(tableName = "usuarios", pk = "id", batchSize = 100))
+	}
+}

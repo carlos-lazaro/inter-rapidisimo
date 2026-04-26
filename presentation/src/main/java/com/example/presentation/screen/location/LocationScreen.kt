@@ -208,3 +208,22 @@ private fun PreviewEmpty() {
 		)
 	}
 }
+
+@ThemePreview
+@Composable
+private fun PreviewLocationCard() {
+	AppTheme {
+		LocationCard(
+			location =
+				Location(
+					idLocalidad = "BOG",
+					nombre = "Bogotá",
+					nombreCorto = "BOG",
+					nombreZona = "Zona Centro",
+					codigoPostal = "110111",
+					nombreCompleto = "Bogotá D.C.",
+					abreviacionCiudad = "BOG",
+				),
+		)
+	}
+}
