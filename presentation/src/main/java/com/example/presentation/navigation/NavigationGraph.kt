@@ -55,7 +55,11 @@ fun NavigationGraph(startScreen: Screen) {
 			entryProvider {
 				entry<Screen.Login> {
 					LoginScreen(
-						onLoginSuccess = dropUnlessResumed { backStack.add(Screen.Home) },
+						onLoginSuccess =
+							dropUnlessResumed {
+								backStack.removeLastOrNull()
+								backStack.add(Screen.Home)
+							},
 					)
 				}
 				entry<Screen.Home> {

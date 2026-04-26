@@ -2,8 +2,7 @@ package com.example.data.localidad.repository
 
 import com.example.core.util.DataError
 import com.example.core.util.EmptyResult
-import com.example.core.util.asEmptyResult
-import com.example.core.util.onSuccess
+import com.example.core.util.Result
 import com.example.data.localidad.local.LocalidadLocalDataSource
 import com.example.data.localidad.mapper.toDomain
 import com.example.data.localidad.mapper.toEntity
@@ -20,10 +19,11 @@ class LocationRepositoryImpl
 	) : LocationRepository {
 		override fun getLocations() = localDataSource.getAllLocalidades().map { it.toDomain() }
 
+		override suspend fun clearLocations(): EmptyResult<DataError.Local> = localDataSource.clearLocalidades()
+
 		override suspend fun syncLocations(): EmptyResult<DataError> =
-			remoteDataSource
-				.obtenerLocalidadesRecogidas()
-				.onSuccess {
-					localDataSource.replaceLocalidades(it.toEntity())
-				}.asEmptyResult()
+			when (val result = remoteDataSource.obtenerLocalidadesRecogidas()) {
+				is Result.Success -> localDataSource.replaceLocalidades(result.data.toEntity())
+				is Result.Failure -> result
+			}
 	}

@@ -49,29 +49,7 @@ class SettingsViewModel
 		fun onAction(action: SettingsAction) {
 			when (action) {
 				SettingsAction.SetAppVersion -> {
-					viewModelScope.launch {
-						setAppVersionUseCase(
-							_state.value.versionInput.text
-								.toString(),
-						).onSuccess {
-							_state.update {
-								it.copy(
-									openSheetEditAppVersion = false,
-									versionInputError = null,
-								)
-							}
-						}.onFailure { error ->
-							when (error) {
-								DomainError.InvalidAppVersion -> {
-									_state.update { it.copy(versionInputError = error.asUiText()) }
-								}
-
-								else -> {
-									_events.send(SettingsEvent.ShowSnackbar(error.asUiText()))
-								}
-							}
-						}
-					}
+					updateAppVersion()
 				}
 
 				SettingsAction.OpenEditAppVersion -> {
@@ -100,6 +78,38 @@ class SettingsViewModel
 				getAppVersionUseCase().collect { appVersion ->
 					_state.update { it.copy(appVersion = appVersion) }
 				}
+			}
+		}
+
+		private fun updateAppVersion() {
+			if (_state.value.isLoading) return
+			val version =
+				_state.value.versionInput.text
+					.toString()
+
+			viewModelScope.launch {
+				_state.update { it.copy(isLoading = true) }
+				setAppVersionUseCase(version)
+					.onSuccess {
+						_state.update {
+							it.copy(
+								isLoading = false,
+								openSheetEditAppVersion = false,
+								versionInputError = null,
+							)
+						}
+					}.onFailure { error ->
+						_state.update { it.copy(isLoading = false) }
+						when (error) {
+							DomainError.InvalidAppVersion -> {
+								_state.update { it.copy(versionInputError = error.asUiText()) }
+							}
+
+							else -> {
+								_events.send(SettingsEvent.ShowSnackbar(error.asUiText()))
+							}
+						}
+					}
 			}
 		}
 	}

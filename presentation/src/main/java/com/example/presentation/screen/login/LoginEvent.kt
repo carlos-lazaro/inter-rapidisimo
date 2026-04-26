@@ -7,5 +7,5 @@ sealed interface LoginEvent {
 		val message: UiText,
 	) : LoginEvent
 
-	data object NavigateToHome : LoginEvent
+	data object LoginSuccess : LoginEvent
 }

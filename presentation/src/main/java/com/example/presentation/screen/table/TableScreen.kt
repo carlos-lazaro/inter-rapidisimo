@@ -27,7 +27,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.domain.table.model.Table
 import com.example.presentation.R
-import com.example.presentation.component.SimpleTopAppBar
+import com.example.presentation.component.emptyState.EmptyStateView
+import com.example.presentation.component.topBar.SimpleTopAppBar
 import com.example.presentation.theme.AppTheme
 import com.example.presentation.theme.preview.ThemePreview
 import com.example.presentation.util.ObserveAsEvents
@@ -83,20 +84,26 @@ private fun TableScreenContent(
 					.fillMaxSize()
 					.padding(innerPadding),
 		) {
-			LazyColumn(
-				verticalArrangement = Arrangement.spacedBy(padding / 2),
-				modifier =
-					Modifier
-						.fillMaxSize(),
-			) {
-				item {
-					Spacer(modifier = Modifier.size(padding))
-				}
-				items(items = state.tables, key = { it.tableName }) { table ->
-					TableCard(table)
-				}
-				item {
-					Spacer(modifier = Modifier.size(padding))
+			if (state.tables.isEmpty()) {
+				EmptyStateView(
+					isLoading = state.isLoading,
+					retry = { onAction(TableAction.Refresh) },
+					modifier = Modifier.fillMaxSize(),
+				)
+			} else {
+				LazyColumn(
+					verticalArrangement = Arrangement.spacedBy(padding / 2),
+					modifier = Modifier.fillMaxSize(),
+				) {
+					item {
+						Spacer(modifier = Modifier.size(padding))
+					}
+					items(items = state.tables, key = { it.tableName }) { table ->
+						TableCard(table)
+					}
+					item {
+						Spacer(modifier = Modifier.size(padding))
+					}
 				}
 			}
 		}
@@ -151,5 +158,26 @@ private fun Preview() {
 			onAction = {},
 			onBack = {},
 		)
+	}
+}
+
+@ThemePreview
+@Composable
+private fun PreviewEmpty() {
+	AppTheme {
+		TableScreenContent(
+			state = TableState(tables = emptyList(), isLoading = false),
+			snackbarHostState = remember { SnackbarHostState() },
+			onAction = {},
+			onBack = {},
+		)
+	}
+}
+
+@ThemePreview
+@Composable
+private fun PreviewTableCard() {
+	AppTheme {
+		TableCard(table = Table(tableName = "usuarios", pk = "id", batchSize = 100))
 	}
 }

@@ -3,15 +3,12 @@ package com.example.data.settings
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.core.util.DataError
 import com.example.core.util.EmptyResult
 import com.example.core.util.Result
-import com.example.domain.setting.model.ThemeMode
 import com.example.domain.setting.repository.SettingsRepository
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive

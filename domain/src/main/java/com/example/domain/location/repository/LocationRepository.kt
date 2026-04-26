@@ -9,4 +9,6 @@ interface LocationRepository {
 	fun getLocations(): Flow<List<Location>>
 
 	suspend fun syncLocations(): EmptyResult<DataError>
+
+	suspend fun clearLocations(): EmptyResult<DataError.Local>
 }

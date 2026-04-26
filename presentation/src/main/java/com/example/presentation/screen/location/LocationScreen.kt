@@ -28,7 +28,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.domain.location.model.Location
 import com.example.presentation.R
-import com.example.presentation.component.SimpleTopAppBar
+import com.example.presentation.component.emptyState.EmptyStateView
+import com.example.presentation.component.topBar.SimpleTopAppBar
 import com.example.presentation.theme.AppTheme
 import com.example.presentation.theme.preview.ThemePreview
 import com.example.presentation.util.ObserveAsEvents
@@ -85,20 +86,26 @@ private fun LocationScreenContent(
 					.fillMaxSize()
 					.padding(innerPadding),
 		) {
-			LazyColumn(
-				verticalArrangement = Arrangement.spacedBy(padding / 2),
-				modifier =
-					Modifier
-						.fillMaxSize(),
-			) {
-				item {
-					Spacer(modifier = Modifier.size(padding))
-				}
-				items(items = state.locations, key = { it.idLocalidad }) { location ->
-					LocationCard(location)
-				}
-				item {
-					Spacer(modifier = Modifier.size(padding))
+			if (state.locations.isEmpty()) {
+				EmptyStateView(
+					isLoading = state.isLoading,
+					retry = { onAction(LocationAction.Refresh) },
+					modifier = Modifier.fillMaxSize(),
+				)
+			} else {
+				LazyColumn(
+					verticalArrangement = Arrangement.spacedBy(padding / 2),
+					modifier = Modifier.fillMaxSize(),
+				) {
+					item {
+						Spacer(modifier = Modifier.size(padding))
+					}
+					items(items = state.locations, key = { it.idLocalidad }) { location ->
+						LocationCard(location)
+					}
+					item {
+						Spacer(modifier = Modifier.size(padding))
+					}
 				}
 			}
 		}
@@ -185,6 +192,38 @@ private fun Preview() {
 			snackbarHostState = remember { SnackbarHostState() },
 			onAction = {},
 			onBack = {},
+		)
+	}
+}
+
+@ThemePreview
+@Composable
+private fun PreviewEmpty() {
+	AppTheme {
+		LocationScreenContent(
+			state = LocationState(locations = emptyList(), isLoading = false),
+			snackbarHostState = remember { SnackbarHostState() },
+			onAction = {},
+			onBack = {},
+		)
+	}
+}
+
+@ThemePreview
+@Composable
+private fun PreviewLocationCard() {
+	AppTheme {
+		LocationCard(
+			location =
+				Location(
+					idLocalidad = "BOG",
+					nombre = "Bogotá",
+					nombreCorto = "BOG",
+					nombreZona = "Zona Centro",
+					codigoPostal = "110111",
+					nombreCompleto = "Bogotá D.C.",
+					abreviacionCiudad = "BOG",
+				),
 		)
 	}
 }

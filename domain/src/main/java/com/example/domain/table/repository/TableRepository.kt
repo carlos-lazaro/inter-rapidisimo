@@ -9,4 +9,6 @@ interface TableRepository {
 	fun getTables(): Flow<List<Table>>
 
 	suspend fun syncTables(usuario: String): EmptyResult<DataError>
+
+	suspend fun clearTables(): EmptyResult<DataError.Local>
 }

@@ -7,6 +7,7 @@ import com.example.domain.auth.model.UserForm
 import com.example.domain.auth.repository.AuthRepository
 import com.example.domain.error.DomainError
 import com.example.domain.error.asResultFailure
+import com.example.domain.error.toDomainError
 import javax.inject.Inject
 
 class LoginUseCase
@@ -18,18 +19,22 @@ class LoginUseCase
 			usuario: String,
 			password: String,
 		): Result<User, DomainError> {
-			if (usuario.isBlank()) return DomainError.UsernameEmpty.asResultFailure()
-			if (password.isBlank()) return DomainError.PasswordEmpty.asResultFailure()
+			if (usuario.trim().isBlank()) return DomainError.UsernameEmpty.asResultFailure()
+			if (password.trim().isBlank()) return DomainError.PasswordEmpty.asResultFailure()
 
 			return when (
 				val result =
 					authRepository.login(
-						userForm = UserForm(usuario = usuario, password = password),
+						userForm =
+							UserForm(
+								usuario = usuario,
+								password = password,
+							),
 						headers = AuthHeaders(),
 					)
 			) {
 				is Result.Success -> result
-				is Result.Failure -> DomainError.RemoteError(result.error).asResultFailure()
+				is Result.Failure -> result.error.toDomainError().asResultFailure()
 			}
 		}
 	}

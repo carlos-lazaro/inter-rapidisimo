@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -56,7 +57,10 @@ fun HomeScreen(
 
 	ObserveAsEvents(viewModel.events) { event ->
 		when (event) {
-			is HomeEvent.ShowSnackbar -> snackbarHostState.showSnackbar(event.message.asString(context))
+			is HomeEvent.ShowSnackbar -> {
+				snackbarHostState.currentSnackbarData?.dismiss()
+				snackbarHostState.showSnackbar(event.message.asString(context))
+			}
 		}
 	}
 
@@ -87,7 +91,10 @@ private fun HomeScreenContent(
 			TopAppBar(
 				title = { Text(stringResource(R.string.welcome)) },
 				navigationIcon = {
-					IconButton(onClick = { onAction(HomeAction.Logout) }) {
+					IconButton(
+						onClick = { onAction(HomeAction.Logout) },
+						enabled = !state.isLoggingOut,
+					) {
 						Icon(
 							Icons.AutoMirrored.Filled.ExitToApp,
 							contentDescription = stringResource(R.string.logout),
@@ -110,6 +117,31 @@ private fun HomeScreenContent(
 						titleContentColor = MaterialTheme.colorScheme.primary,
 					),
 			)
+		},
+		bottomBar = {
+			BottomAppBar {
+				Row(
+					verticalAlignment = Alignment.CenterVertically,
+					modifier =
+						Modifier
+							.fillMaxWidth()
+							.padding(padding),
+				) {
+					AppButton(
+						text = stringResource(R.string.locations),
+						onClick = goLocations,
+						modifier = Modifier.weight(1f),
+					)
+
+					Spacer(modifier = Modifier.size(padding))
+
+					AppButton(
+						text = stringResource(R.string.tables),
+						onClick = goTables,
+						modifier = Modifier.weight(1f),
+					)
+				}
+			}
 		},
 	) { innerPadding ->
 		Column(
@@ -171,25 +203,6 @@ private fun HomeScreenContent(
 			)
 
 			Spacer(modifier = Modifier.weight(1f))
-
-			Row(
-				verticalAlignment = Alignment.CenterVertically,
-				modifier = Modifier.fillMaxWidth(),
-			) {
-				AppButton(
-					text = stringResource(R.string.locations),
-					onClick = goLocations,
-					modifier = Modifier.weight(1f),
-				)
-
-				Spacer(modifier = Modifier.size(padding))
-
-				AppButton(
-					text = stringResource(R.string.tables),
-					onClick = goTables,
-					modifier = Modifier.weight(1f),
-				)
-			}
 		}
 	}
 }

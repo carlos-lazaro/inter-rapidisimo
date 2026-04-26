@@ -24,7 +24,11 @@ fun TablaDto.toEntity(): TablaEntity? {
 
 fun TablaEntity.toDomain(): Table? {
 	if (nombreTabla.isBlank()) return null
-	return Table(tableName = nombreTabla, pk = pk ?: "", batchSize = batchSize ?: 0)
+	return Table(
+		tableName = nombreTabla,
+		pk = pk ?: "",
+		batchSize = batchSize ?: 0,
+	)
 }
 
 fun List<TablaEntity>.toDomain(): List<Table> = mapNotNull { it.toDomain() }

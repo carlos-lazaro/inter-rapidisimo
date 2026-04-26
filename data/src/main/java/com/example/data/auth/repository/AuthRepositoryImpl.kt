@@ -27,7 +27,7 @@ class AuthRepositoryImpl
 		override suspend fun login(
 			userForm: UserForm,
 			headers: AuthHeaders,
-		): Result<User, DataError.Remote> =
+		): Result<User, DataError> =
 			when (
 				val result =
 					remoteDataSource.login(
@@ -46,10 +46,16 @@ class AuthRepositoryImpl
 					val user =
 						entity.toDomain()
 							?: return Result.Failure(DataError.Remote.Serialization)
-					localDataSource
-						.replaceAuth(entity)
-						.onFailure { Timber.e("Failed to persist auth entity: $it") }
-					Result.Success(user)
+
+					val res =
+						localDataSource
+							.replaceAuth(entity)
+							.onFailure { Timber.e("Failed to persist auth entity: $it") }
+
+					when (res) {
+						is Result.Failure -> Result.Failure(res.error)
+						is Result.Success -> Result.Success(user)
+					}
 				}
 			}
 
