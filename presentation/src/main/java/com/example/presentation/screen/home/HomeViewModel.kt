@@ -78,6 +78,7 @@ class HomeViewModel
 		}
 
 		private fun logout() {
+			if (_state.value.isLoggingOut) return
 			viewModelScope.launch {
 				_state.update { it.copy(isLoggingOut = true) }
 				when (val result = logoutUseCase()) {

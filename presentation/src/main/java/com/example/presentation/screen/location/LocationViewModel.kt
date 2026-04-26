@@ -53,11 +53,9 @@ class LocationViewModel
 		}
 
 		private fun sync() {
-			if (!syncMutex.tryLock()) return
-
-			_state.update { it.copy(isLoading = true) }
-
 			viewModelScope.launch {
+				if (!syncMutex.tryLock()) return@launch
+				_state.update { it.copy(isLoading = true) }
 				try {
 					syncLocationsUseCase()
 						.onFailure { _events.send(LocationEvent.ShowSnackbar(it.asUiText())) }

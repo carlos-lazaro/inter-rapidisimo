@@ -53,11 +53,9 @@ class TableViewModel
 		}
 
 		private fun sync() {
-			if (!syncMutex.tryLock()) return
-
-			_state.update { it.copy(isLoading = true) }
-
 			viewModelScope.launch {
+				if (!syncMutex.tryLock()) return@launch
+				_state.update { it.copy(isLoading = true) }
 				try {
 					syncTablesUseCase()
 						.onFailure { _events.send(TableEvent.ShowSnackbar(it.asUiText())) }
