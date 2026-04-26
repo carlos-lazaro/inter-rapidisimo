@@ -2,8 +2,10 @@ package com.example.presentation.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.util.Result
 import com.example.core.util.onFailure
 import com.example.core.util.onSuccess
+import com.example.domain.auth.usecase.ClearLocalCacheUseCase
 import com.example.domain.auth.usecase.GetAuthUserUseCase
 import com.example.domain.auth.usecase.LogoutUseCase
 import com.example.domain.security.usecase.CheckMinimumVersionUseCase
@@ -27,6 +29,7 @@ class HomeViewModel
 	constructor(
 		private val getAuthUserUseCase: GetAuthUserUseCase,
 		private val logoutUseCase: LogoutUseCase,
+		private val clearLocalCacheUseCase: ClearLocalCacheUseCase,
 		private val checkMinimumVersionUseCase: CheckMinimumVersionUseCase,
 	) : ViewModel() {
 		private var hasLoadedInitialData = false
@@ -75,6 +78,18 @@ class HomeViewModel
 		}
 
 		private fun logout() {
-			viewModelScope.launch { logoutUseCase() }
+			viewModelScope.launch {
+				_state.update { it.copy(isLoggingOut = true) }
+				when (val result = logoutUseCase()) {
+					is Result.Success -> {
+						clearLocalCacheUseCase()
+					}
+
+					is Result.Failure -> {
+						_state.update { it.copy(isLoggingOut = false) }
+						_events.send(HomeEvent.ShowSnackbar(result.error.asUiText()))
+					}
+				}
+			}
 		}
 	}

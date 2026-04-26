@@ -19,6 +19,8 @@ class TableRepositoryImpl
 	) : TableRepository {
 		override fun getTables() = localDataSource.getAllTablas().map { it.toDomain() }
 
+		override suspend fun clearTables(): EmptyResult<DataError.Local> = localDataSource.clearTablas()
+
 		override suspend fun syncTables(usuario: String): EmptyResult<DataError> =
 			when (val result = remoteDataSource.obtenerEsquema(usuario = usuario)) {
 				is Result.Success -> localDataSource.replaceTablas(result.data.mapNotNull { it.toEntity() })

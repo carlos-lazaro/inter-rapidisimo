@@ -88,7 +88,10 @@ private fun HomeScreenContent(
 			TopAppBar(
 				title = { Text(stringResource(R.string.welcome)) },
 				navigationIcon = {
-					IconButton(onClick = { onAction(HomeAction.Logout) }) {
+					IconButton(
+						onClick = { onAction(HomeAction.Logout) },
+						enabled = !state.isLoggingOut,
+					) {
 						Icon(
 							Icons.AutoMirrored.Filled.ExitToApp,
 							contentDescription = stringResource(R.string.logout),

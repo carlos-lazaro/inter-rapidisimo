@@ -19,6 +19,8 @@ class LocationRepositoryImpl
 	) : LocationRepository {
 		override fun getLocations() = localDataSource.getAllLocalidades().map { it.toDomain() }
 
+		override suspend fun clearLocations(): EmptyResult<DataError.Local> = localDataSource.clearLocalidades()
+
 		override suspend fun syncLocations(): EmptyResult<DataError> =
 			when (val result = remoteDataSource.obtenerLocalidadesRecogidas()) {
 				is Result.Success -> localDataSource.replaceLocalidades(result.data.toEntity())
