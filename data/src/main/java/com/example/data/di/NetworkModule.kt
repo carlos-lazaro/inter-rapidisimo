@@ -19,11 +19,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-//    TODO: for quick testing and just for development purposes
 	@Provides
 	@Singleton
 	@Named("baseUrl")
-	fun provideBaseUrl(): String = "https://apitesting.interrapidisimo.co/"
+	fun provideBaseUrl(): String = BuildConfig.BASE_URL
 
 	@Provides
 	@Singleton

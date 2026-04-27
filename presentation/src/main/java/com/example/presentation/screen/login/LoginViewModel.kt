@@ -35,10 +35,9 @@ class LoginViewModel
 		private val _state =
 			MutableStateFlow(
 				if (BuildConfig.DEBUG) {
-//                    TODO: for quick testing and just for development purposes
 					LoginState(
-						username = TextFieldState("pam.meredy21"),
-						password = TextFieldState("Inter2021"),
+						username = TextFieldState(BuildConfig.DEBUG_USERNAME),
+						password = TextFieldState(BuildConfig.DEBUG_PASSWORD),
 					)
 				} else {
 					LoginState()

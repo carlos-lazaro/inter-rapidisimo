@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
@@ -5,6 +7,15 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.jetbrains.kotlin.serialization)
 }
+
+val localProperties =
+    Properties().apply {
+        val file = rootProject.file("local.properties")
+        if (file.exists()) load(file.inputStream())
+    }
+
+val debugUsername = localProperties["DEBUG_USERNAME"] as String? ?: ""
+val debugPassword = localProperties["DEBUG_PASSWORD"] as String? ?: ""
 
 android {
     namespace = "com.example.presentation"
@@ -20,8 +31,14 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "DEBUG_USERNAME", "\"$debugUsername\"")
+            buildConfigField("String", "DEBUG_PASSWORD", "\"$debugPassword\"")
+        }
         release {
             isMinifyEnabled = false
+            buildConfigField("String", "DEBUG_USERNAME", "\"\"")
+            buildConfigField("String", "DEBUG_PASSWORD", "\"\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",

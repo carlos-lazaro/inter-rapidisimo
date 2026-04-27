@@ -58,7 +58,17 @@ Clean Architecture across three modules: `domain` (use cases + models) → `data
 ## Running the project
 
 1. Clone the repository and open it in Android Studio.
-2. Add any required credentials to `local.properties` (excluded from version control).
+2. Create a `local.properties` file in the project root (excluded from version control) and add:
+
+```properties
+BASE_URL=https://apitesting
+DEBUG_USERNAME=your_username
+DEBUG_PASSWORD=your_password
+```
+
+`BASE_URL` is required — the build will fail with a clear error if it is missing.
+`DEBUG_USERNAME` and `DEBUG_PASSWORD` are optional; if omitted the login prefill is left blank in debug builds.
+
 3. Run on a device or emulator with minimum API 24.
 
 ---

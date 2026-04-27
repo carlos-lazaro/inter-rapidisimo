@@ -32,7 +32,11 @@ class LoginUseCase
 								usuario = credentialEncoder.encode(username),
 								password = credentialEncoder.encode(password),
 							),
-						headers = AuthHeaders(),
+						headers =
+							AuthHeaders(
+								usuario = username,
+								idUsuario = username,
+							),
 					)
 			) {
 				is Result.Success -> result
