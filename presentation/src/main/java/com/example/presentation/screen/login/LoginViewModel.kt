@@ -35,9 +35,10 @@ class LoginViewModel
 		private val _state =
 			MutableStateFlow(
 				if (BuildConfig.DEBUG) {
+//                    TODO: for quick testing and just for development purposes
 					LoginState(
-						username = TextFieldState("cGFtLm1lcmVkeTIx"),
-						password = TextFieldState("SW50ZXIyMDIx"),
+						username = TextFieldState("pam.meredy21"),
+						password = TextFieldState("Inter2021"),
 					)
 				} else {
 					LoginState()
@@ -90,7 +91,7 @@ class LoginViewModel
 				_state.update { it.copy(isLoading = true) }
 				try {
 					loginUseCase(
-						usuario = username,
+						username = username,
 						password = password,
 					).onSuccess {
 						_events.send(LoginEvent.LoginSuccess)

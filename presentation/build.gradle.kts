@@ -38,6 +38,9 @@ android {
         buildConfig = true
         compose = true
     }
+    testOptions {
+        unitTests.all { it.failOnNoDiscoveredTests = false }
+    }
 }
 
 dependencies {
