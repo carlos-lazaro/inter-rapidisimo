@@ -10,9 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class GetTablesUseCaseTest {
-	private fun createUseCase(
-		repository: TableRepository = FakeTableRepository(),
-	) = GetTablesUseCase(repository)
+	private fun createUseCase(repository: TableRepository = FakeTableRepository()) = GetTablesUseCase(repository)
 
 	@Test
 	fun `GIVEN empty repository WHEN invoke THEN emits empty list`() =

@@ -8,9 +8,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class GetAppVersionUseCaseTest {
-	private fun createUseCase(
-		settingsRepository: SettingsRepository = FakeSettingsRepository(),
-	) = GetAppVersionUseCase(settingsRepository)
+	private fun createUseCase(settingsRepository: SettingsRepository = FakeSettingsRepository()) = GetAppVersionUseCase(settingsRepository)
 
 	@Test
 	fun `GIVEN valid version WHEN invoke THEN emits version`() =

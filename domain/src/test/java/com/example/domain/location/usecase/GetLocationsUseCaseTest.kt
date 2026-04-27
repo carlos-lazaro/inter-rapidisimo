@@ -10,9 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class GetLocationsUseCaseTest {
-	private fun createUseCase(
-		repository: LocationRepository = FakeLocationRepository(),
-	) = GetLocationsUseCase(repository)
+	private fun createUseCase(repository: LocationRepository = FakeLocationRepository()) = GetLocationsUseCase(repository)
 
 	@Test
 	fun `GIVEN empty repository WHEN invoke THEN emits empty list`() =

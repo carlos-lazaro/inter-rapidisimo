@@ -26,7 +26,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase()
 
 			// When
-			val result = useCase(usuario = "", password = "secret")
+			val result = useCase(username = "", password = "secret")
 
 			// Then
 			assertTrue(result is Result.Failure)
@@ -40,7 +40,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase()
 
 			// When
-			val result = useCase(usuario = "   ", password = "secret")
+			val result = useCase(username = "   ", password = "secret")
 
 			// Then
 			assertTrue(result is Result.Failure)
@@ -54,7 +54,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase()
 
 			// When
-			val result = useCase(usuario = "user", password = "")
+			val result = useCase(username = "user", password = "")
 
 			// Then
 			assertTrue(result is Result.Failure)
@@ -68,7 +68,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase()
 
 			// When
-			val result = useCase(usuario = "user", password = "   ")
+			val result = useCase(username = "user", password = "   ")
 
 			// Then
 			assertTrue(result is Result.Failure)
@@ -85,7 +85,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase(authRepository = fakeRepo, credentialEncoder = fakeEncoder)
 
 			// When
-			useCase(usuario = "user", password = "secret")
+			useCase(username = "user", password = "secret")
 
 			// Then
 			assertEquals("encoded_value", fakeRepo.capturedUserForm?.usuario)
@@ -102,7 +102,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase(authRepository = fakeRepo)
 
 			// When
-			val result = useCase(usuario = "user", password = "secret")
+			val result = useCase(username = "user", password = "secret")
 
 			// Then
 			assertTrue(result is Result.Success)
@@ -118,7 +118,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase(authRepository = fakeRepo)
 
 			// When
-			val result = useCase(usuario = "user", password = "secret")
+			val result = useCase(username = "user", password = "secret")
 
 			// Then
 			assertTrue(result is Result.Failure)
@@ -137,7 +137,7 @@ class LoginUseCaseTest {
 			val useCase = createUseCase(authRepository = fakeRepo)
 
 			// When
-			val result = useCase(usuario = "user", password = "secret")
+			val result = useCase(username = "user", password = "secret")
 
 			// Then
 			assertTrue(result is Result.Failure)

@@ -25,8 +25,7 @@ class ClearLocalCacheUseCaseTest {
 		coEvery { tableRepository.clearTables() } returns Result.Success(Unit)
 	}
 
-	private fun createUseCase(scope: CoroutineScope) =
-		ClearLocalCacheUseCase(locationRepository, tableRepository, scope)
+	private fun createUseCase(scope: CoroutineScope) = ClearLocalCacheUseCase(locationRepository, tableRepository, scope)
 
 	@Test
 	fun `GIVEN both repos WHEN invoke THEN clearLocations is called`() =

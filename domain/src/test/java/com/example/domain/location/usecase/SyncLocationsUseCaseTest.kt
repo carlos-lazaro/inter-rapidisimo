@@ -10,9 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class SyncLocationsUseCaseTest {
-	private fun createUseCase(
-		repository: LocationRepository = FakeLocationRepository(),
-	) = SyncLocationsUseCase(repository)
+	private fun createUseCase(repository: LocationRepository = FakeLocationRepository()) = SyncLocationsUseCase(repository)
 
 	@Test
 	fun `GIVEN repository returns success WHEN invoke THEN returns success`() =

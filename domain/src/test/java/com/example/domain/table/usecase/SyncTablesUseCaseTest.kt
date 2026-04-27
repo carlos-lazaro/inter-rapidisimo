@@ -10,9 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class SyncTablesUseCaseTest {
-	private fun createUseCase(
-		repository: TableRepository = FakeTableRepository(),
-	) = SyncTablesUseCase(repository)
+	private fun createUseCase(repository: TableRepository = FakeTableRepository()) = SyncTablesUseCase(repository)
 
 	@Test
 	fun `GIVEN repository returns success WHEN invoke THEN returns success`() =

@@ -18,10 +18,10 @@ class LoginUseCase
 		private val credentialEncoder: CredentialEncoder,
 	) {
 		suspend operator fun invoke(
-			usuario: String,
-			password: String,
+            username: String,
+            password: String,
 		): Result<User, DomainError> {
-			if (usuario.trim().isBlank()) return DomainError.UsernameEmpty.asResultFailure()
+			if (username.trim().isBlank()) return DomainError.UsernameEmpty.asResultFailure()
 			if (password.trim().isBlank()) return DomainError.PasswordEmpty.asResultFailure()
 
 			return when (
@@ -29,7 +29,7 @@ class LoginUseCase
 					authRepository.login(
 						userForm =
 							UserForm(
-								usuario = credentialEncoder.encode(usuario),
+								usuario = credentialEncoder.encode(username),
 								password = credentialEncoder.encode(password),
 							),
 						headers = AuthHeaders(),
