@@ -10,6 +10,5 @@ class SyncTablesUseCase
 	constructor(
 		private val repository: TableRepository,
 	) {
-//        TODO: hardcoded for now
 		suspend operator fun invoke(): EmptyResult<DataError> = repository.syncTables(usuario = "usuario")
 	}

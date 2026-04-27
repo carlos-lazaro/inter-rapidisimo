@@ -91,7 +91,7 @@ class LoginViewModel
 				_state.update { it.copy(isLoading = true) }
 				try {
 					loginUseCase(
-						usuario = username,
+						username = username,
 						password = password,
 					).onSuccess {
 						_events.send(LoginEvent.LoginSuccess)
