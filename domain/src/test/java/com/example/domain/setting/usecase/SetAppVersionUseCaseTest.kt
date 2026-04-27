@@ -11,7 +11,10 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class SetAppVersionUseCaseTest {
-	private fun createUseCase(settingsRepository: SettingsRepository = FakeSettingsRepository()) = SetAppVersionUseCase(settingsRepository)
+	private fun createUseCase(settingsRepository: SettingsRepository = FakeSettingsRepository()) =
+		SetAppVersionUseCase(
+			settingsRepository = settingsRepository,
+		)
 
 	@Test
 	fun `GIVEN blank input WHEN invoke THEN returns InvalidAppVersion`() =

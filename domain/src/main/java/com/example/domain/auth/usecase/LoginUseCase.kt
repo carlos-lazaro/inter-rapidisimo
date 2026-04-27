@@ -18,8 +18,8 @@ class LoginUseCase
 		private val credentialEncoder: CredentialEncoder,
 	) {
 		suspend operator fun invoke(
-            username: String,
-            password: String,
+			username: String,
+			password: String,
 		): Result<User, DomainError> {
 			if (username.trim().isBlank()) return DomainError.UsernameEmpty.asResultFailure()
 			if (password.trim().isBlank()) return DomainError.PasswordEmpty.asResultFailure()
